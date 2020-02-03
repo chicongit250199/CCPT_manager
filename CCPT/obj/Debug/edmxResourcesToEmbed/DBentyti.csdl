@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Model.Account" />
+    <EntitySet Name="DanhMucs" EntityType="Model.DanhMuc" />
+    <EntitySet Name="Hoatdongs" EntityType="Model.Hoatdong" />
+    <EntitySet Name="KhachHangs" EntityType="Model.KhachHang" />
+    <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagram" />
+    <EntitySet Name="ThietBis" EntityType="Model.ThietBi" />
+    <AssociationSet Name="FK_Hoatdong_DanhMuc" Association="Model.FK_Hoatdong_DanhMuc">
+      <End Role="DanhMuc" EntitySet="DanhMucs" />
+      <End Role="Hoatdong" EntitySet="Hoatdongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThietBi_DanhMuc2" Association="Model.FK_ThietBi_DanhMuc2">
+      <End Role="DanhMuc" EntitySet="DanhMucs" />
+      <End Role="ThietBi" EntitySet="ThietBis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KhachHang_Hoatdong" Association="Model.FK_KhachHang_Hoatdong">
+      <End Role="Hoatdong" EntitySet="Hoatdongs" />
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+    </AssociationSet>
+    <FunctionImport Name="sua">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="SDTkhach" Mode="In" Type="Int32" />
+      <Parameter Name="TenKhachHang" Mode="In" Type="String" />
+      <Parameter Name="NoiDungSuaChua" Mode="In" Type="String" />
+      <Parameter Name="NgaySua" Mode="In" Type="DateTime" />
+      <Parameter Name="ChiPhi" Mode="In" Type="Int32" />
+      <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+      <Parameter Name="TenThietBi" Mode="In" Type="String" />
+      <Parameter Name="MaThietBi" Mode="In" Type="String" />
+      <Parameter Name="NhanVien" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Deletecell">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Show" ReturnType="Collection(Model.Show_Result)">
+      <Parameter Name="ngay" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Them">
+      <Parameter Name="SDTkhach" Mode="In" Type="Int32" />
+      <Parameter Name="TenKhachHang" Mode="In" Type="String" />
+      <Parameter Name="NoiDungSuaChua" Mode="In" Type="String" />
+      <Parameter Name="NgaySua" Mode="In" Type="DateTime" />
+      <Parameter Name="ChiPhi" Mode="In" Type="Int32" />
+      <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+      <Parameter Name="TenThietBi" Mode="In" Type="String" />
+      <Parameter Name="MaThietBi" Mode="In" Type="String" />
+      <Parameter Name="NhanVien" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="timkiem" ReturnType="Collection(Model.timkiem_Result)">
+      <Parameter Name="Tim" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updatesoluong">
+      <Parameter Name="Matb" Mode="In" Type="String" />
+      <Parameter Name="soluong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SuaAcc">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="PassWord" Mode="In" Type="String" />
+      <Parameter Name="TypeUser" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ThemAcc">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="PassWord" Mode="In" Type="String" />
+      <Parameter Name="TypeUser" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="XoaAcc">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SuaKH">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="sdt" Mode="In" Type="Int32" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ThemKH">
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="sdt" Mode="In" Type="Int32" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="XoaKH">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassWord" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TypeUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DanhMuc">
+    <Key>
+      <PropertyRef Name="MaThietBi" />
+    </Key>
+    <Property Name="MaThietBi" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="SoSerial" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Loai" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenThietBi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <Property Name="ThoiGianBaoHanh" Type="Int32" />
+    <NavigationProperty Name="Hoatdongs" Relationship="Model.FK_Hoatdong_DanhMuc" FromRole="DanhMuc" ToRole="Hoatdong" />
+    <NavigationProperty Name="ThietBi" Relationship="Model.FK_ThietBi_DanhMuc2" FromRole="DanhMuc" ToRole="ThietBi" />
+  </EntityType>
+  <EntityType Name="Hoatdong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDTkhach" Type="Int32" Nullable="false" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDungSuaChua" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySua" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ChiPhi" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="TenThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaThietBi" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="NhanVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DanhMuc" Relationship="Model.FK_Hoatdong_DanhMuc" FromRole="Hoatdong" ToRole="DanhMuc" />
+    <NavigationProperty Name="KhachHangs" Relationship="Model.FK_KhachHang_Hoatdong" FromRole="Hoatdong" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="IDKhachHang" />
+    </Key>
+    <Property Name="IDKhachHang" Type="Int32" Nullable="false" />
+    <Property Name="TenKhachHang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDTKhach" Type="Int32" Nullable="false" />
+    <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hoatdong" Relationship="Model.FK_KhachHang_Hoatdong" FromRole="KhachHang" ToRole="Hoatdong" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ThietBi">
+    <Key>
+      <PropertyRef Name="MaThietBi" />
+    </Key>
+    <Property Name="MaThietBi" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="SoSerial" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="TenThietBi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySX" Type="DateTime" Precision="0" />
+    <Property Name="ThoiGianBaoHanh" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DanhMuc" Relationship="Model.FK_ThietBi_DanhMuc2" FromRole="ThietBi" ToRole="DanhMuc" />
+  </EntityType>
+  <Association Name="FK_Hoatdong_DanhMuc">
+    <End Type="Model.DanhMuc" Role="DanhMuc" Multiplicity="0..1" />
+    <End Type="Model.Hoatdong" Role="Hoatdong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DanhMuc">
+        <PropertyRef Name="MaThietBi" />
+      </Principal>
+      <Dependent Role="Hoatdong">
+        <PropertyRef Name="MaThietBi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThietBi_DanhMuc2">
+    <End Type="Model.DanhMuc" Role="DanhMuc" Multiplicity="1" />
+    <End Type="Model.ThietBi" Role="ThietBi" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DanhMuc">
+        <PropertyRef Name="MaThietBi" />
+      </Principal>
+      <Dependent Role="ThietBi">
+        <PropertyRef Name="MaThietBi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KhachHang_Hoatdong">
+    <End Type="Model.Hoatdong" Role="Hoatdong" Multiplicity="1" />
+    <End Type="Model.KhachHang" Role="KhachHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hoatdong">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="KhachHang">
+        <PropertyRef Name="SDTKhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Show_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="SDTkhach" Nullable="false" />
+    <Property Type="String" Name="TenKhachHang" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NoiDungSuaChua" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="NgaySua" Nullable="false" />
+    <Property Type="Int32" Name="ChiPhi" Nullable="false" />
+    <Property Type="Int32" Name="SoLuong" Nullable="true" />
+    <Property Type="String" Name="TenThietBi" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MaThietBi" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="NhanVien" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="timkiem_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="SDTkhach" Nullable="false" />
+    <Property Type="String" Name="TenKhachHang" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NoiDungSuaChua" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="NgaySua" Nullable="false" />
+    <Property Type="Int32" Name="ChiPhi" Nullable="false" />
+    <Property Type="Int32" Name="SoLuong" Nullable="true" />
+    <Property Type="String" Name="TenThietBi" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MaThietBi" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="NhanVien" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

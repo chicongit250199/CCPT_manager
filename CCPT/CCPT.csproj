@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D748D6A-D030-4531-A848-DD9E7329DF9D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CCPT</RootNamespace>
+    <AssemblyName>CCPT</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Account_Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account_Manager.Designer.cs">
+      <DependentUpon>Account_Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bill.Designer.cs">
+      <DependentUpon>Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DanhMuc.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DBentyti.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBentyti.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBentyti.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBentyti.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBentyti.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopAplicationDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesktopAplicationDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopAplicationDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesktopAplicationDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopAplicationDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesktopAplicationDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopAplicationDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesktopAplicationDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopAplicationDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesktopAplicationDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GThieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GThieu.Designer.cs">
+      <DependentUpon>GThieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hoatdong.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="index.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="index.Designer.cs">
+      <DependentUpon>index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhachHang.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="khachhang_manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="khachhang_manager.Designer.cs">
+      <DependentUpon>khachhang_manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="kho.Designer.cs">
+      <DependentUpon>kho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Show_Result.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThietBi.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <Compile Include="timkiem_Result.cs">
+      <DependentUpon>DBentyti.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Account_Manager.resx">
+      <DependentUpon>Account_Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bill.resx">
+      <DependentUpon>Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GThieu.resx">
+      <DependentUpon>GThieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="index.resx">
+      <DependentUpon>index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="khachhang_manager.resx">
+      <DependentUpon>khachhang_manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="kho.resx">
+      <DependentUpon>kho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="DBentyti.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBentyti.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DBentyti.edmx.diagram">
+      <DependentUpon>DBentyti.edmx</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet.xsc">
+      <DependentUpon>DesktopAplicationDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesktopAplicationDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DesktopAplicationDataSet.xss">
+      <DependentUpon>DesktopAplicationDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet1.xsc">
+      <DependentUpon>DesktopAplicationDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesktopAplicationDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DesktopAplicationDataSet1.xss">
+      <DependentUpon>DesktopAplicationDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet2.xsc">
+      <DependentUpon>DesktopAplicationDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesktopAplicationDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DesktopAplicationDataSet2.xss">
+      <DependentUpon>DesktopAplicationDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet3.xsc">
+      <DependentUpon>DesktopAplicationDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesktopAplicationDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DesktopAplicationDataSet3.xss">
+      <DependentUpon>DesktopAplicationDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet4.xsc">
+      <DependentUpon>DesktopAplicationDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="DesktopAplicationDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesktopAplicationDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DesktopAplicationDataSet4.xss">
+      <DependentUpon>DesktopAplicationDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-icon-39414.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\240_F_145200260_Mlts2v0PtYabB4v5dz1I8hKNCfieJidW.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Cancel_131742.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_Ok_131848.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Jommans-Mushroom-Search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Start-Menu-Search-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBentyti.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBentyti.edmx</DependentUpon>
+      <LastGenOutput>DBentyti.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBentyti.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBentyti.edmx</DependentUpon>
+      <LastGenOutput>DBentyti.cs</LastGenOutput>
+    </Content>
+    <Content Include="images\gt.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="MaThietBi" />
+          </Key>
+          <Property Name="MaThietBi" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="SoSerial" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Loai" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenThietBi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DonGia" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="ThoiGianBaoHanh" Type="int" />
+        </EntityType>
+        <EntityType Name="Hoatdong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SDTkhach" Type="int" Nullable="false" />
+          <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoiDungSuaChua" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgaySua" Type="date" Nullable="false" />
+          <Property Name="ChiPhi" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="TenThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaThietBi" Type="nvarchar" MaxLength="25" />
+          <Property Name="NhanVien" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="IDKhachHang" />
+          </Key>
+          <Property Name="IDKhachHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKhachHang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SDTKhach" Type="int" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ThietBi">
+          <Key>
+            <PropertyRef Name="MaThietBi" />
+          </Key>
+          <Property Name="MaThietBi" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="SoSerial" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="TenThietBi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgaySX" Type="date" />
+          <Property Name="ThoiGianBaoHanh" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ThietBi_DanhMuc2">
+          <End Role="DanhMuc" Type="Self.DanhMuc" Multiplicity="1" />
+          <End Role="ThietBi" Type="Self.ThietBi" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="MaThietBi" />
+            </Principal>
+            <Dependent Role="ThietBi">
+              <PropertyRef Name="MaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Deletecell" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Show" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ngay" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sua" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="SDTkhach" Type="int" Mode="In" />
+          <Parameter Name="TenKhachHang" Type="nvarchar" Mode="In" />
+          <Parameter Name="NoiDungSuaChua" Type="nvarchar" Mode="In" />
+          <Parameter Name="NgaySua" Type="date" Mode="In" />
+          <Parameter Name="ChiPhi" Type="int" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="TenThietBi" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaThietBi" Type="nvarchar" Mode="In" />
+          <Parameter Name="NhanVien" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SuaAcc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+          <Parameter Name="TypeUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SuaKH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="ten" Type="nvarchar" Mode="In" />
+          <Parameter Name="sdt" Type="int" Mode="In" />
+          <Parameter Name="diachi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Them" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SDTkhach" Type="int" Mode="In" />
+          <Parameter Name="TenKhachHang" Type="nvarchar" Mode="In" />
+          <Parameter Name="NoiDungSuaChua" Type="nvarchar" Mode="In" />
+          <Parameter Name="NgaySua" Type="date" Mode="In" />
+          <Parameter Name="ChiPhi" Type="int" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="TenThietBi" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaThietBi" Type="nvarchar" Mode="In" />
+          <Parameter Name="NhanVien" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ThemAcc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+          <Parameter Name="TypeUser" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ThemKH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ten" Type="nvarchar" Mode="In" />
+          <Parameter Name="sdt" Type="int" Mode="In" />
+          <Parameter Name="diachi" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="timkiem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Tim" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="updatesoluong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Matb" Type="nvarchar" Mode="In" />
+          <Parameter Name="soluong" Type="int" Mode="In" />
+        </Function>
+        <Function Name="XoaAcc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="XoaKH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DanhMuc" EntityType="Self.DanhMuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hoatdong" EntityType="Self.Hoatdong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThietBi" EntityType="Self.ThietBi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ThietBi_DanhMuc2" Association="Self.FK_ThietBi_DanhMuc2">
+            <End Role="DanhMuc" EntitySet="DanhMuc" />
+            <End Role="ThietBi" EntitySet="ThietBi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Model.Account" />
+          <EntitySet Name="DanhMucs" EntityType="Model.DanhMuc" />
+          <EntitySet Name="Hoatdongs" EntityType="Model.Hoatdong" />
+          <EntitySet Name="KhachHangs" EntityType="Model.KhachHang" />
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagram" />
+          <EntitySet Name="ThietBis" EntityType="Model.ThietBi" />
+          <AssociationSet Name="FK_Hoatdong_DanhMuc" Association="Model.FK_Hoatdong_DanhMuc">
+            <End Role="DanhMuc" EntitySet="DanhMucs" />
+            <End Role="Hoatdong" EntitySet="Hoatdongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThietBi_DanhMuc2" Association="Model.FK_ThietBi_DanhMuc2">
+            <End Role="DanhMuc" EntitySet="DanhMucs" />
+            <End Role="ThietBi" EntitySet="ThietBis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KhachHang_Hoatdong" Association="Model.FK_KhachHang_Hoatdong">
+            <End Role="Hoatdong" EntitySet="Hoatdongs" />
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+          </AssociationSet>
+          <FunctionImport Name="sua">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="SDTkhach" Mode="In" Type="Int32" />
+            <Parameter Name="TenKhachHang" Mode="In" Type="String" />
+            <Parameter Name="NoiDungSuaChua" Mode="In" Type="String" />
+            <Parameter Name="NgaySua" Mode="In" Type="DateTime" />
+            <Parameter Name="ChiPhi" Mode="In" Type="Int32" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="TenThietBi" Mode="In" Type="String" />
+            <Parameter Name="MaThietBi" Mode="In" Type="String" />
+            <Parameter Name="NhanVien" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Deletecell">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Show" ReturnType="Collection(Model.Show_Result)">
+          <Parameter Name="ngay" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Them">
+            <Parameter Name="SDTkhach" Mode="In" Type="Int32" />
+            <Parameter Name="TenKhachHang" Mode="In" Type="String" />
+            <Parameter Name="NoiDungSuaChua" Mode="In" Type="String" />
+            <Parameter Name="NgaySua" Mode="In" Type="DateTime" />
+            <Parameter Name="ChiPhi" Mode="In" Type="Int32" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="TenThietBi" Mode="In" Type="String" />
+            <Parameter Name="MaThietBi" Mode="In" Type="String" />
+            <Parameter Name="NhanVien" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="timkiem" ReturnType="Collection(Model.timkiem_Result)">
+          <Parameter Name="Tim" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="updatesoluong">
+            <Parameter Name="Matb" Mode="In" Type="String" />
+            <Parameter Name="soluong" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SuaAcc">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="PassWord" Mode="In" Type="String" />
+            <Parameter Name="TypeUser" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemAcc">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="PassWord" Mode="In" Type="String" />
+            <Parameter Name="TypeUser" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="XoaAcc">
+          <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SuaKH">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="ten" Mode="In" Type="String" />
+            <Parameter Name="sdt" Mode="In" Type="Int32" />
+            <Parameter Name="diachi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemKH">
+            <Parameter Name="ten" Mode="In" Type="String" />
+            <Parameter Name="sdt" Mode="In" Type="Int32" />
+            <Parameter Name="diachi" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="XoaKH">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DanhMuc">
+          <Key>
+            <PropertyRef Name="MaThietBi" />
+          </Key>
+          <Property Name="MaThietBi" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SoSerial" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Loai" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenThietBi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DonGia" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="ThoiGianBaoHanh" Type="Int32" />
+          <NavigationProperty Name="Hoatdongs" Relationship="Model.FK_Hoatdong_DanhMuc" FromRole="DanhMuc" ToRole="Hoatdong" />
+          <NavigationProperty Name="ThietBi" Relationship="Model.FK_ThietBi_DanhMuc2" FromRole="DanhMuc" ToRole="ThietBi" />
+        </EntityType>
+        <EntityType Name="Hoatdong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SDTkhach" Type="Int32" Nullable="false" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDungSuaChua" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySua" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ChiPhi" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="TenThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaThietBi" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="NhanVien" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DanhMuc" Relationship="Model.FK_Hoatdong_DanhMuc" FromRole="Hoatdong" ToRole="DanhMuc" />
+          <NavigationProperty Name="KhachHangs" Relationship="Model.FK_KhachHang_Hoatdong" FromRole="Hoatdong" ToRole="KhachHang" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="IDKhachHang" />
+          </Key>
+          <Property Name="IDKhachHang" Type="Int32" Nullable="false" />
+          <Property Name="TenKhachHang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDTKhach" Type="Int32" Nullable="false" />
+          <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Hoatdong" Relationship="Model.FK_KhachHang_Hoatdong" FromRole="KhachHang" ToRole="Hoatdong" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ThietBi">
+          <Key>
+            <PropertyRef Name="MaThietBi" />
+          </Key>
+          <Property Name="MaThietBi" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="SoSerial" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="TenThietBi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySX" Type="DateTime" Precision="0" />
+          <Property Name="ThoiGianBaoHanh" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DanhMuc" Relationship="Model.FK_ThietBi_DanhMuc2" FromRole="ThietBi" ToRole="DanhMuc" />
+        </EntityType>
+        <Association Name="FK_Hoatdong_DanhMuc">
+          <End Type="Model.DanhMuc" Role="DanhMuc" Multiplicity="0..1" />
+          <End Type="Model.Hoatdong" Role="Hoatdong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="MaThietBi" />
+            </Principal>
+            <Dependent Role="Hoatdong">
+              <PropertyRef Name="MaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThietBi_DanhMuc2">
+          <End Type="Model.DanhMuc" Role="DanhMuc" Multiplicity="1" />
+          <End Type="Model.ThietBi" Role="ThietBi" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DanhMuc">
+              <PropertyRef Name="MaThietBi" />
+            </Principal>
+            <Dependent Role="ThietBi">
+              <PropertyRef Name="MaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KhachHang_Hoatdong">
+          <End Type="Model.Hoatdong" Role="Hoatdong" Multiplicity="1" />
+          <End Type="Model.KhachHang" Role="KhachHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hoatdong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="KhachHang">
+              <PropertyRef Name="SDTKhach" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Show_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="SDTkhach" Nullable="false" />
+          <Property Type="String" Name="TenKhachHang" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NoiDungSuaChua" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="NgaySua" Nullable="false" />
+          <Property Type="Int32" Name="ChiPhi" Nullable="false" />
+          <Property Type="Int32" Name="SoLuong" Nullable="true" />
+          <Property Type="String" Name="TenThietBi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MaThietBi" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="NhanVien" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="timkiem_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="SDTkhach" Nullable="false" />
+          <Property Type="String" Name="TenKhachHang" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NoiDungSuaChua" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="NgaySua" Nullable="false" />
+          <Property Type="Int32" Name="ChiPhi" Nullable="false" />
+          <Property Type="Int32" Name="SoLuong" Nullable="true" />
+          <Property Type="String" Name="TenThietBi" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MaThietBi" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="NhanVien" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeUser" ColumnName="TypeUser" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhMucs">
+            <EntityTypeMapping TypeName="Model.DanhMuc">
+              <MappingFragment StoreEntitySet="DanhMuc">
+                <ScalarProperty Name="ThoiGianBaoHanh" ColumnName="ThoiGianBaoHanh" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="SoSerial" ColumnName="SoSerial" />
+                <ScalarProperty Name="MaThietBi" ColumnName="MaThietBi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hoatdongs">
+            <EntityTypeMapping TypeName="Model.Hoatdong">
+              <MappingFragment StoreEntitySet="Hoatdong">
+                <ScalarProperty Name="NhanVien" ColumnName="NhanVien" />
+                <ScalarProperty Name="MaThietBi" ColumnName="MaThietBi" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="ChiPhi" ColumnName="ChiPhi" />
+                <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
+                <ScalarProperty Name="NoiDungSuaChua" ColumnName="NoiDungSuaChua" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="SDTkhach" ColumnName="SDTkhach" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="Model.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SDTKhach" ColumnName="SDTKhach" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThietBis">
+            <EntityTypeMapping TypeName="Model.ThietBi">
+              <MappingFragment StoreEntitySet="ThietBi">
+                <ScalarProperty Name="ThoiGianBaoHanh" ColumnName="ThoiGianBaoHanh" />
+                <ScalarProperty Name="NgaySX" ColumnName="NgaySX" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="SoSerial" ColumnName="SoSerial" />
+                <ScalarProperty Name="MaThietBi" ColumnName="MaThietBi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sua" FunctionName="Model.Store.sua" />
+          <FunctionImportMapping FunctionImportName="Deletecell" FunctionName="Model.Store.Deletecell" />
+          <FunctionImportMapping FunctionImportName="Show" FunctionName="Model.Store.Show">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.Show_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SDTkhach" ColumnName="SDTkhach" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="NoiDungSuaChua" ColumnName="NoiDungSuaChua" />
+                <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
+                <ScalarProperty Name="ChiPhi" ColumnName="ChiPhi" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="MaThietBi" ColumnName="MaThietBi" />
+                <ScalarProperty Name="NhanVien" ColumnName="NhanVien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Them" FunctionName="Model.Store.Them" />
+          <FunctionImportMapping FunctionImportName="timkiem" FunctionName="Model.Store.timkiem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.timkiem_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SDTkhach" ColumnName="SDTkhach" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="NoiDungSuaChua" ColumnName="NoiDungSuaChua" />
+                <ScalarProperty Name="NgaySua" ColumnName="NgaySua" />
+                <ScalarProperty Name="ChiPhi" ColumnName="ChiPhi" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="TenThietBi" ColumnName="TenThietBi" />
+                <ScalarProperty Name="MaThietBi" ColumnName="MaThietBi" />
+                <ScalarProperty Name="NhanVien" ColumnName="NhanVien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="updatesoluong" FunctionName="Model.Store.updatesoluong" />
+          <FunctionImportMapping FunctionImportName="SuaAcc" FunctionName="Model.Store.SuaAcc" />
+          <FunctionImportMapping FunctionImportName="ThemAcc" FunctionName="Model.Store.ThemAcc" />
+          <FunctionImportMapping FunctionImportName="XoaAcc" FunctionName="Model.Store.XoaAcc" />
+          <FunctionImportMapping FunctionImportName="SuaKH" FunctionName="Model.Store.SuaKH" />
+          <FunctionImportMapping FunctionImportName="ThemKH" FunctionName="Model.Store.ThemKH" />
+          <FunctionImportMapping FunctionImportName="XoaKH" FunctionName="Model.Store.XoaKH" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
